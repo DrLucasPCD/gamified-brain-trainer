@@ -35,6 +35,22 @@
       }
     } catch(e) { console.warn('Init Firebase (opcional) falhou:', e); }
   </script>
+  <script>
+    // Força login: esconde a página até confirmar auth, senão redireciona
+    document.body.style.display = 'none';
+    try {
+      firebase.auth().onAuthStateChanged(u => {
+        if (!u) {
+          location.href = 'index.html';
+        } else {
+          document.body.style.display = 'block';
+        }
+      });
+    } catch (e) {
+      // Se algo der errado com Firebase, volta para o index
+      location.href = 'index.html';
+    }
+  </script>
   <script src="memory.js"></script>
 </body>
 </html>
