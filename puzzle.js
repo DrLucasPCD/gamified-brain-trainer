@@ -1,6 +1,20 @@
-// Jogo de quebra‑cabeça de palavras: desembaralhe a palavra
-const authPuzzle = firebase.auth();
-const dbPuzzle = firebase.firestore();
+// Quebra-cabeça de palavras: desembaralhe a palavra.
+
+// Guardas para Firebase
+let authPuzzle = null;
+let dbPuzzle = null;
+try {
+  if (typeof firebase !== 'undefined') {
+    if (!firebase.apps || !firebase.apps.length) {
+      if (typeof firebaseConfig !== 'undefined') firebase.initializeApp(firebaseConfig);
+    }
+    authPuzzle = firebase.auth();
+    dbPuzzle   = firebase.firestore();
+  }
+} catch (e) {
+  console.warn('Firebase não inicializado (puzzle):', e);
+}
+
 const words = ['neuronio', 'sinapse', 'cerebro', 'memoria', 'cognicao', 'logica', 'inteligencia', 'mente'];
 let currentWord = '';
 
@@ -14,6 +28,7 @@ function newPuzzle() {
 }
 
 function savePuzzleScore(correct) {
+  if (!dbPuzzle || !authPuzzle) return;
   const user = authPuzzle.currentUser;
   if (!user) return;
   dbPuzzle.collection('users').doc(user.uid).collection('progress')
@@ -21,20 +36,16 @@ function savePuzzleScore(correct) {
       lastPlayed: new Date(),
       correct: firebase.firestore.FieldValue.increment(correct ? 1 : 0),
       attempts: firebase.firestore.FieldValue.increment(1)
-    }, { merge: true });
+    }, { merge: true }).catch(() => {});
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   newPuzzle();
   document.getElementById('submit-puzzle').addEventListener('click', () => {
     const answer = document.getElementById('puzzle-input').value.trim().toLowerCase();
-    const correct = answer === currentWord;
     const feedback = document.getElementById('puzzle-feedback');
-    if (correct) {
-      feedback.textContent = 'Correto!';
-    } else {
-      feedback.textContent = `Errado. A palavra correta era ${currentWord}.`;
-    }
+    const correct = answer === currentWord;
+    feedback.textContent = correct ? 'Correto!' : `Errado. A palavra correta era ${currentWord}.`;
     savePuzzleScore(correct);
     newPuzzle();
     document.getElementById('puzzle-input').value = '';

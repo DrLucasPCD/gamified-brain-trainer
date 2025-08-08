@@ -1,6 +1,20 @@
-// Teste de QI simples com perguntas de múltipla escolha
-const authIQ = firebase.auth();
-const dbIQ = firebase.firestore();
+// Teste de QI simples com perguntas de múltipla escolha.
+
+// Guardas para Firebase
+let authIQ = null;
+let dbIQ = null;
+try {
+  if (typeof firebase !== 'undefined') {
+    if (!firebase.apps || !firebase.apps.length) {
+      if (typeof firebaseConfig !== 'undefined') firebase.initializeApp(firebaseConfig);
+    }
+    authIQ = firebase.auth();
+    dbIQ   = firebase.firestore();
+  }
+} catch (e) {
+  console.warn('Firebase não inicializado (iq):', e);
+}
+
 const questions = [
   {
     question: 'Qual número completa a sequência: 2, 4, 8, 16, ___?',
@@ -23,6 +37,7 @@ const questions = [
     correct: 2
   }
 ];
+
 let currentIndex = 0;
 let score = 0;
 
@@ -49,12 +64,12 @@ function selectAnswer(index) {
   } else {
     feedback.textContent = `Errado. A resposta correta é "${q.answers[q.correct]}".`;
   }
-  // Desativa os botões após a escolha
   const buttons = document.getElementById('answers-container').querySelectorAll('button');
   buttons.forEach(btn => btn.disabled = true);
 }
 
 function saveIQScore() {
+  if (!dbIQ || !authIQ) return;
   const user = authIQ.currentUser;
   if (!user) return;
   dbIQ.collection('users').doc(user.uid).collection('progress')
@@ -62,7 +77,7 @@ function saveIQScore() {
       lastPlayed: new Date(),
       score: score,
       total: questions.length
-    }, { merge: true });
+    }, { merge: true }).catch(() => {});
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -72,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex++;
       displayQuestion();
     } else {
-      // Fim do teste
-      document.getElementById('question-container').textContent = `Fim do teste! Sua pontuação: ${score}/${questions.length}`;
+      document.getElementById('question-container').textContent =
+        `Fim do teste! Sua pontuação: ${score}/${questions.length}`;
       document.getElementById('answers-container').innerHTML = '';
       document.getElementById('next-question').style.display = 'none';
       document.getElementById('iq-feedback').textContent = '';

@@ -14,7 +14,19 @@
   <button id="submit-puzzle">Enviar</button>
   <p id="puzzle-feedback"></p>
   <button onclick="location.href='index.html'">Voltar</button>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
+  <script>
+    try {
+      if (typeof firebase !== 'undefined') {
+        if (!firebase.apps || !firebase.apps.length) {
+          if (typeof firebaseConfig !== 'undefined') firebase.initializeApp(firebaseConfig);
+        }
+      }
+    } catch(e) { console.warn('Init Firebase (opcional) falhou:', e); }
+  </script>
   <script src="puzzle.js"></script>
 </body>
 </html>
