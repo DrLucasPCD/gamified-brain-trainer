@@ -41,3 +41,18 @@ button.secondary{background:#374151}
 .nav{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
 .nav a{color:var(--muted); text-decoration:none}
 .nav a:hover{color:#fff}
+
+/* ---- Index layout overrides ---- */
+.hidden{display:none !important}
+.page-index{width:min(1200px,96vw); display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:24px; align-items:start}
+@media (max-width:1024px){ .page-index{grid-template-columns:1fr 1fr} }
+@media (max-width:720px){ .page-index{grid-template-columns:1fr} }
+
+.hero h1{font-size:42px; line-height:1.1; margin-bottom:12px}
+.card ul{list-style:none; padding-left:0; margin:8px 0}
+.card ul li{margin:6px 0}
+
+/* link colors (avoid purple visited) */
+a, a:visited{color:var(--text)}
+.card ul li a{text-decoration:none}
+.card ul li a:hover{color:var(--primary)}
