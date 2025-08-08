@@ -5,12 +5,13 @@
 // (Configurações > Geral > Seus aplicativos). Sem essas chaves, o aplicativo
 // não conseguirá se conectar ao Firebase. Mantenha esta informação segura.
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+ apiKey: "AIzaSyBFgj-7t_ALpE3QJ2h8ayMTCsSNd21PHDw",
+    authDomain: "treinador-de-mente.firebaseapp.com",
+    projectId: "treinador-de-mente",
+    storageBucket: "treinador-de-mente.firebasestorage.app",
+    messagingSenderId: "554570882942",
+    appId: "1:554570882942:web:f9a0803b9bfe187c79dd2f",
+    measurementId: "G-7EZBVP5H4K"
 };
 
 // Inicializa o Firebase
