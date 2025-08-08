@@ -7,13 +7,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="card" id="mem-card">
+  <div class="nav"><div></div><a href="index.html">Voltar</a></div>
   <h1>Treino de Memória</h1>
-  <p>Memorize a sequência de números exibida e digite corretamente.</p>
+  <p>Memorize a sequência e digite na ordem correta.</p>
+  <div class="hud">
+    <div class="pill">Streak: <strong id="mem-streak">0</strong></div>
+    <div class="pill">Score: <strong id="mem-score">0</strong></div>
+    <div class="pill">Nível: <strong id="mem-level">1</strong></div>
+    <div class="timer"><div class="bar" id="mem-timer"></div></div>
+  </div>
   <div id="sequence-container"></div>
   <input type="text" id="memory-input" placeholder="Digite a sequência">
   <button id="submit-memory">Enviar</button>
   <p id="memory-feedback"></p>
-  <button onclick="location.href='index.html'">Voltar</button>
+</div>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>

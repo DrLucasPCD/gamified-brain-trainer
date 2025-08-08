@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="card" id="iq-card">
+  <div class="nav"><div></div><a href="index.html">Voltar</a></div>
   <h1>Teste de QI</h1>
+  <div class="hud">
+    <div class="pill">Progresso: <strong id="iq-progress-text">1 / 4</strong></div>
+    <div class="timer"><div class="bar" id="iq-progress-bar"></div></div>
+  </div>
   <div id="question-container"></div>
   <div id="answers-container"></div>
   <p id="iq-feedback"></p>
   <button id="next-question">Próxima</button>
-  <button onclick="location.href='index.html'">Voltar</button>
+</div>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>

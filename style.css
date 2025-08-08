@@ -1,49 +1,43 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-  margin: 0;
-  background-color: #f5f5f5;
+:root{
+  --bg1:#0f2027; --bg2:#203a43; --bg3:#2c5364;
+  --card:#111827; --text:#e5e7eb; --muted:#9ca3af;
+  --primary:#3b82f6; --success:#22c55e; --danger:#ef4444; --warn:#f59e0b;
 }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter, system-ui, Arial, sans-serif; color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
+  display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.card{width:min(720px,96vw); background:var(--card); border-radius:16px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card h1{margin:0 0 12px; font-size:28px}
+.card p{color:var(--muted)}
 
-h1 {
-  margin-bottom: 10px;
-}
+.hud{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:12px 0 16px}
+.hud .pill{background:#1f2937; padding:6px 10px; border-radius:999px; font-size:14px}
+.hud .pill strong{color:#fff}
 
-input, button {
-  margin: 5px;
-  padding: 8px 12px;
-  font-size: 1em;
-}
+.timer{position:relative; width:100%; height:10px; background:#111; border-radius:8px; overflow:hidden}
+.timer .bar{position:absolute; left:0; top:0; bottom:0; width:100%; background:linear-gradient(90deg, var(--primary), var(--warn));}
 
-button {
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-}
+#sequence-container,#problem-container,#scrambled-word,#question-container{font-size:24px; margin:16px 0}
 
-button:hover {
-  background-color: #0056b3;
-}
+input,button{font-size:16px}
+input{width:100%; padding:12px 14px; border:1px solid #374151; background:#0b1220; color:var(--text); border-radius:10px; outline:none; margin:8px 0 12px}
+input:focus{border-color:var(--primary)}
+button{cursor:pointer; padding:10px 14px; border:0; border-radius:10px; background:var(--primary); color:white; font-weight:600; margin:6px 6px 6px 0}
+button.secondary{background:#374151}
 
-.hidden {
-  display: none;
-}
+#memory-feedback,#speed-feedback,#puzzle-feedback,#iq-feedback{min-height:22px; margin-top:8px}
+.feedback-ok{color:var(--success)}
+.feedback-bad{color:var(--danger)}
 
-ul {
-  list-style: none;
-  padding: 0;
-}
+.pulse{animation:pulse .4s ease}
+.shake{animation:shake .35s ease}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-ul li {
-  margin: 8px 0;
-}
-
-#answers-container button {
-  display: block;
-  margin: 5px auto;
-  padding: 8px 12px;
-  width: 200px;
-}
+.nav{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
+.nav a{color:var(--muted); text-decoration:none}
+.nav a:hover{color:#fff}

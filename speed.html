@@ -7,13 +7,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="card" id="speed-card">
+  <div class="nav"><div></div><a href="index.html">Voltar</a></div>
   <h1>Raciocínio Rápido</h1>
-  <p>Resolva a operação o mais rápido possível.</p>
+  <p>Resolva a operação antes do tempo acabar.</p>
+  <div class="hud">
+    <div class="pill">Streak: <strong id="speed-streak">0</strong></div>
+    <div class="pill">Score: <strong id="speed-score">0</strong></div>
+    <div class="pill">Nível: <strong id="speed-level">1</strong></div>
+    <div class="timer"><div class="bar" id="speed-timer"></div></div>
+  </div>
   <div id="problem-container"></div>
   <input type="number" id="speed-input" placeholder="Resposta">
   <button id="submit-speed">Enviar</button>
   <p id="speed-feedback"></p>
-  <button onclick="location.href='index.html'">Voltar</button>
+</div>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
