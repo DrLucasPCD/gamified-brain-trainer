@@ -56,3 +56,6 @@ button.secondary{background:#374151}
 a, a:visited{color:var(--text)}
 .card ul li a{text-decoration:none}
 .card ul li a:hover{color:var(--primary)}
+/* Empilha hero e menu abaixo quando logado */
+body.logged-in .page-index{ grid-template-columns: 1fr; }
+body.logged-in .menu{ width: 100%; }
