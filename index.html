@@ -11,37 +11,38 @@
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
-  <h1>Gamified Brain Trainer</h1>
-  <!-- Container shown only when user is logged in -->
-  <div id="user-container" class="hidden">
-    <p>Bem‑vindo, <span id="user-email"></span>!</p>
-    <button id="sign-out-btn">Sair</button>
-  </div>
-  <!-- Authentication forms -->
-  <div id="auth-container">
-    <h2>Login</h2>
-    <input type="email" id="login-email" placeholder="Email">
-    <input type="password" id="login-password" placeholder="Senha">
-    <button id="login-btn">Entrar</button>
-    <h3>ou</h3>
-    <h2>Registrar</h2>
-    <input type="email" id="register-email" placeholder="Email">
-    <input type="password" id="register-password" placeholder="Senha">
-    <button id="register-btn">Registrar</button>
-  </div>
-  <!-- Menu shown only when user is logged in -->
-  <div id="menu-container" class="hidden">
-    <h2>Escolha um treino:</h2>
-    <ul>
-      <li><a href="memory.html">Treino de Memória</a></li>
-      <li><a href="speed.html">Raciocínio Rápido</a></li>
-      <li><a href="puzzle.html">Quebra‑cabeça</a></li>
-      <li><a href="iq.html">Teste de QI</a></li>
-    </ul>
-    <h3>Seu progresso</h3>
-    <ul id="progress-list">
-      <!-- preenchido dinamicamente -->
-    </ul>
+  <div class="page-index">
+    <section class="card hero">
+      <h1>Gamified Brain Trainer</h1>
+      <div id="user-container" class="hidden">
+        <p>Bem‑vindo, <span id="user-email"></span>!</p>
+        <button id="sign-out-btn">Sair</button>
+      </div>
+    </section>
+
+    <section class="card auth" id="auth-container">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email">
+      <input type="password" id="login-password" placeholder="Senha">
+      <button id="login-btn">Entrar</button>
+      <h3>ou</h3>
+      <h2>Registrar</h2>
+      <input type="email" id="register-email" placeholder="Email">
+      <input type="password" id="register-password" placeholder="Senha">
+      <button id="register-btn">Registrar</button>
+    </section>
+
+    <section class="card menu hidden" id="menu-container">
+      <h2>Escolha um treino:</h2>
+      <ul>
+        <li><a href="memory.html">Treino de Memória</a></li>
+        <li><a href="speed.html">Raciocínio Rápido</a></li>
+        <li><a href="puzzle.html">Quebra‑cabeça</a></li>
+        <li><a href="iq.html">Teste de QI</a></li>
+      </ul>
+      <h3>Seu progresso</h3>
+      <ul id="progress-list"></ul>
+    </section>
   </div>
   <!-- Firebase config and main script -->
   <script src="firebase-config.js"></script>
